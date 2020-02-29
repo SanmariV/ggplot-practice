@@ -95,3 +95,12 @@ p + facet_grid(.~cyl)
 
 #separate accoring to transmission type and cylinder
 p+facet_grid(am~cyl)
+
+#Statistics layer
+ggplot(data = mtcars,
+       aes(x = wt, y= mpg, color = cyl)) +
+    geom_point()+
+    labs(
+        title = "Miles per gallon vs vehicle weight"
+    )+
+    stat_smooth(method = lm, color="black")
