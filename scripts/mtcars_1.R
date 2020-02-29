@@ -12,8 +12,7 @@ glimpse(mtcars)
 #4. Join data
 
 #5. Wrangle data
-cyl <- as.factor(mtcars$cyl)
-am <- as.factor(mtcars$am)
+
 #6. Data insights
 
 #scatterplot
@@ -24,3 +23,14 @@ ggplot(data = mtcars,aes(x = wt, y= mpg, color = factor(cyl), size=disp, shape=f
     geom_point()
 
 #barplot
+p <- ggplot(data = mtcars, aes(x = factor(cyl)))
+
+ggplot(data = mtcars, aes(x = factor(cyl), fill = factor(am))) + 
+    geom_bar() + 
+    labs(
+        title = "Automatic vs Manual transmission",
+        subtitle = "Not sure what to say here",
+        x_lab= "Size of cylinder",
+        y_lab="Number of vehicles"
+    )+
+    theme_tq_dark()
