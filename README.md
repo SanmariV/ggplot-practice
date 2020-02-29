@@ -6,3 +6,4 @@ Practiced using the ggplot package in R to make visualisations using the mtcars 
 
 ### Files
 mtcars_1.R
+barPlot_1.jpg

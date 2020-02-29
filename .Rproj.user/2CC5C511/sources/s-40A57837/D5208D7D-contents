@@ -35,7 +35,7 @@ ggplot(data = mtcars, aes(x = factor(cyl), fill = factor(am))) +
         x_lab= "Size of cylinder",
         y_lab="Number of vehicles"
     )+
-    theme_tq_dark()
+    theme_tq()
 
 #histogram
 ggplot(data = mtcars, aes(x = mpg)) + 
