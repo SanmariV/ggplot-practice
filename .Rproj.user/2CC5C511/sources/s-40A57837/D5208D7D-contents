@@ -67,3 +67,31 @@ ggplot(data = mtcars, aes(x = factor(cyl), y = mpg)) +
         x_lab= "Size of cylinder",
         y_lab="Miles per gallon"
     )
+#facet layer
+#scatter plot 1
+
+glimpse(mtcars)
+mtcars$am[which(mtcars$am == "0")] <- "Automatic"
+mtcars$am[which(mtcars$am == "1")] <- "Manual"
+mtcars$am <- as.factor(mtcars$am)
+ggplot(data = mtcars,
+       aes(x = wt, y= mpg, color = qsec, 
+           shape=factor(cyl))) +
+        geom_point()+
+    facet_grid(.~am)
+
+#scatter plot 2
+p <- ggplot(data = mtcars,
+       aes(x = wt, y= mpg, color = qsec, 
+           shape=factor(cyl))) +
+    geom_point()
+    
+
+#Separate according to transmission type
+p+facet_grid(am~.)
+
+#separate according to cylinder type
+p + facet_grid(.~cyl)
+
+#separate accoring to transmission type and cylinder
+p+facet_grid(am~cyl)
