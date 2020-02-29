@@ -5,7 +5,7 @@
 Practiced using the ggplot package in R to make visualisations using the mtcars dataset.
 
 ### Files
-mtcars_1.R
+mtcars_1.R (in the scripts folder)
 
 ### Graphs in img folder
 barPlot_1.jpeg
