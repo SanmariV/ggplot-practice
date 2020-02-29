@@ -47,4 +47,12 @@ ggplot(data = mtcars, aes(x = mpg)) +
         y_lab="Number of vehicles"
     )
 
-    
+#density plot
+ggplot(data = mtcars, aes(x = mpg)) + 
+    geom_density(color = "#AEB4A9", fill = "white") + 
+    labs(
+        title = "Miles per gallon Histogram",
+        subtitle = "Not sure what to say here",
+        x_lab= "Size of cylinder",
+        y_lab="Number of vehicles"
+    )
