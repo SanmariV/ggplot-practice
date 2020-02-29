@@ -56,3 +56,14 @@ ggplot(data = mtcars, aes(x = mpg)) +
         x_lab= "Size of cylinder",
         y_lab="Number of vehicles"
     )
+#box plot
+
+    #format text
+ggplot(data = mtcars, aes(x = factor(cyl), y = mpg)) + 
+    geom_boxplot(color = "#AEB4A9", fill = "white") +
+    labs(
+        title = "Miles per gallon per cylinder size",
+        subtitle = "Not sure what to say here",
+        x_lab= "Size of cylinder",
+        y_lab="Miles per gallon"
+    )
