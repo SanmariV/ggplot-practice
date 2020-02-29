@@ -20,6 +20,8 @@ sanzo.demo2()
 #scatterplot
 theme_set(theme_bw())
 
+install.packages("Hmisc")
+
 
 ggplot(data = mtcars,aes(x = wt, y= mpg, color = factor(cyl), size=disp, shape=factor(am))) +
     geom_point()

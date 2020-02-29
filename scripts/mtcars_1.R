@@ -20,6 +20,8 @@ sanzo.demo2()
 #scatterplot
 theme_set(theme_bw())
 
+install.packages("Hmisc")
+
 
 ggplot(data = mtcars,aes(x = wt, y= mpg, color = factor(cyl), size=disp, shape=factor(am))) +
     geom_point()
@@ -35,14 +37,13 @@ ggplot(data = mtcars, aes(x = factor(cyl), fill = factor(am))) +
         x_lab= "Size of cylinder",
         y_lab="Number of vehicles"
     )+
-    theme_tq_dark()
+    theme_tq()
 
 #histogram
 ggplot(data = mtcars, aes(x = mpg)) + 
     geom_histogram(binwidth = 5, color = "white", fill = "#AEB4A9") + 
     labs(
         title = "Miles per gallon Histogram",
-        subtitle = "Not sure what to say here",
         x_lab= "Size of cylinder",
         y_lab="Number of vehicles"
     )
@@ -52,7 +53,7 @@ ggplot(data = mtcars, aes(x = mpg)) +
     geom_density(color = "#AEB4A9", fill = "white") + 
     labs(
         title = "Miles per gallon Histogram",
-        subtitle = "Not sure what to say here",
+        subtitle = "Density Plot",
         x_lab= "Size of cylinder",
         y_lab="Number of vehicles"
     )
@@ -63,7 +64,7 @@ ggplot(data = mtcars, aes(x = factor(cyl), y = mpg)) +
     geom_boxplot(color = "#AEB4A9", fill = "white") +
     labs(
         title = "Miles per gallon per cylinder size",
-        subtitle = "Not sure what to say here",
+        subtitle = "Box Plot",
         x_lab= "Size of cylinder",
         y_lab="Miles per gallon"
     )
@@ -104,3 +105,18 @@ ggplot(data = mtcars,
         title = "Miles per gallon vs vehicle weight"
     )+
     stat_smooth(method = lm, color="black")
+
+#coordinate layer: if you want to zoom into certain graph area
+p <- ggplot(data = mtcars,
+       aes(x = wt, y= hp, color = am)) +
+    geom_point()+
+    geom_smooth()+
+    labs(
+        title = "Horse power vs vehicle weight")
+p + coord_cartesian(xlim = c(2.5,6))    
+
+
+
+
+
+
