@@ -12,5 +12,12 @@ glimpse(mtcars)
 #4. Join data
 
 #5. Wrangle data
-
+mtcars$cyl <- as.factor(mtcars$cyl)
 #6. Data insights
+
+#scatterplot
+theme_set(theme_bw())
+
+
+ggplot(data = mtcars,aes(x = wt, y= mpg)) +
+    geom_point(col=as.factor(mtcars$cyl))

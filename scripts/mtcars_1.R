@@ -14,3 +14,8 @@ glimpse(mtcars)
 #5. Wrangle data
 
 #6. Data insights
+
+#scatterplot
+theme_set(theme_bw())
+ggplot(data = mtcars,aes(x = wt, y= mpg)) +
+    geom_point()
