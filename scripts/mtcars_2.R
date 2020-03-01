@@ -32,7 +32,7 @@ z  #z=2.366432 (result of z-statistic)
 
 #Step 3: Compute critical value for significance level =5% or confidence interval=95%
 zalpha = qnorm(1-alpha)
-zalpha
+zalpha  #zalpha = 1.64485...
 
 #step 4: Compare test stat to critical value and draw conclusions
 #########################################################################
