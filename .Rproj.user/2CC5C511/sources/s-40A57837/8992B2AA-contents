@@ -7,6 +7,10 @@ library(lubridate)
 
 describe(mtcars)
 
+# if the population mean and population standard deviation is known use z-statistic (standard normal distribution)
+# if the population mean is known but the population standard deviation is not known and sample size < 30
+# use t-statistic
+
 #Step 1: Set up H1 and H0
 #Hypothesis test: Example 1 Upper/right tailed test
 #Kurkure claims that maximum saturated fat content in chip packet is 2 grams with std dev = 0.25
@@ -26,7 +30,7 @@ mu <- 2 #Population mean
 xbar <- 2.1 #Sample mean
 sigma <- 0.25 #Populaton std deviation
 n <- 35 #sample size
-SE <- sigma/sqrt(n)
+SE <- sigma/sqrt(n)  # this is also known as the sample standard deviation
 z <- (xbar-mu)/SE
 z  #z=2.366432 (result of z-statistic)
 
@@ -106,9 +110,98 @@ zalpha_3 <- qnorm(1-alpha/2) #critcal value is -1.96 and 1.96
 c(-zalpha_3,zalpha_3) #this is a two-tailed test
 
 #You can also calculate the p-value
-pval <- 2*pnorm(z_3) #pval = 0.058333, this is > than 5%, therefore we have insignificant evidence to reject the null hypothesis
+pval <- 2*pnorm(z_3) #pval = 0.058333, this is > than 5%, therefore we have insufficient evidence to reject the null hypothesis
 #we need to multiply the pvalue with2 because it is a two-tailed test
 
 #step 4: Compare test stat to critical value and draw conclusions
-#z_3 > zalpha_3 or pval > 5%, therefore we have insignificant evidence at the 5% level to reject the null hypothesis
+#z_3 > zalpha_3 or pval > 5%, therefore we have insufficient evidence at the 5% significance level to reject the null hypothesis
 
+
+###############################################################################
+#     t-statistics
+# If the population standard deviation is not known, or the popultion mean < 30, use t-statistics for hypothesis test
+# To calculate the critical value, you need to know the degrees of freedom (df) to use to look up with in the table
+# Same rules apply regarding left-,right and two-tailed test
+###############################################################################
+
+# t-statistic example
+
+# The high school athletic director is asked if football players are doing as well
+# academically as the other student athletes.
+# From a previous study the average GPA for student athletes was 3.10
+# After an initiative to help improve the GPA of student athletes,
+# the athletic director randomly samples 20 football players and finds that the
+# average GPA of the sample is 3.18 with a sample standard deviation of  0.54
+# Is there a significant improvement at the 5% significance level?
+
+# Solution
+
+# Step 1:
+# Set up null hypothesis and alternative hypothesis
+#H0: mu_4 = 3.10
+#H1: mu != 3.10
+
+#Step 2:
+#Compute test statistic
+
+xbar_4 <- 3.18
+mu_4 <- 3.1
+sigma_4 <- 0.54
+n_4 <- 20
+t <- (xbar_4-mu_4)/(sigma_4/sqrt(n_4))  #t = 0.6625
+
+#Step 3: Compute critical value for significance level =5% or confidence interval=95%
+
+# df = 19 (sample -1) i.e. 20-1 = 19
+# because our alternative hypothesis is mu != 3.10, this is a two-tailed test
+# so we need to look up 5%/2
+# in the table we get -2.093 and 2.093 as our two t-critical values
+
+#step 4: Compare test stat to critical value and draw conclusions
+
+#since our t-test value is lower than our t-critical value, we have
+#insufficient evidence at the the 5% significance level to reject the null hypothesis
+# We can conclude that the average GPA of the football players is not significantly different
+#than the other athletic students
+
+##########################################################################
+# CALCULATING A CONFIDNECE INTERVAL USING T-STATISTICS
+#
+# Duracell manufactures batteries that the CEO claims will last an average of 300 hours under
+# normal use. A researcher randomly selected 20 batteries from the production line
+# line and tested these batteries. The tested batteries had a mean life span of
+# 270 hours with a standard deviation of 50 hours.
+# Do we have enough evidence to suggest that the claim of an average lifetime 
+# 300 hours is false?
+############################################################################
+
+#Step 1: Set up H0 and H1 and Calculate the SE, the t-stat and t-critical
+# H0: mu = 300
+# H1: mu != 300
+
+mu_5 <- 300
+sigma_5 <- 50
+xbar_5 <- 270
+n_5 <- 20
+
+#Step 2:
+#Compute test statistic
+
+t_2 <- (xbar_5-mu_5)/(sigma_5/sqrt(n_5)) # t-stat is 2.6832
+SE_t <- sigma_5/sqrt(20) #11.18
+
+
+#Step 3: Compute critical value for significance level =5% or confidence interval=95%
+# degree of freedom = 20 - 1 =19
+# t-stat critical value is c(-2.093, 2.093)
+
+# Margin of error = (t-stat critical value at 2.5%)*SE_t
+ME <- SE_t * 2.093
+CI_min <- xbar_5 - ME
+CI_max <- xbar_5 + ME
+
+# Confidence interval is therefore (246.6, 293.400)
+
+#step 4: draw conclusions
+# The mean of 300 is not included in the confidence interval, therefore we have sufficient 
+# evidence at the 5% level to reject the null hypothesis
